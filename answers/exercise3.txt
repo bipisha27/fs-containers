@@ -1,0 +1,13 @@
+$ docker start -i ecstatic_perlman
+root@f2f5c5a847f8:/# apt update
+...
+All packages are up to date.
+root@f2f5c5a847f8:/# apt install -y nano
+...
+Setting up nano (8.7.1-1ubuntu0.1) ...
+root@f2f5c5a847f8:/# nano /usr/src/app/index.js
+(edited file to add: console.log('Hello World'))
+root@f2f5c5a847f8:/# cat /usr/src/app/index.js
+console.log('Hello World')
+root@f2f5c5a847f8:/# exit
+exit
