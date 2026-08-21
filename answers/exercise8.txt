@@ -1,0 +1,68 @@
+$ docker container ls
+CONTAINER ID   IMAGE     COMMAND                  CREATED       STATUS   >
+8f5e6fa96310   mongo     "docker-entrypoint.s…"   3 hours ago   Up 2 hour>
+
+$ docker exec -it todo-backend-mongo-1 bash
+root@8f5e6fa96310:/# mongosh -u root -p example
+
+test> show dbs
+admin         100.00 KiB
+config        108.00 KiB
+local          64.00 KiB
+the_database   72.00 KiB
+
+test> use the_database
+switched to db the_database
+
+the_database> show collections
+todos
+
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId("..."),
+    text: 'Write code',
+    done: true
+  },
+  {
+    _id: ObjectId("..."),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+
+the_database> db.todos.insertOne({ text: "Increase the number of tools in>
+{
+  acknowledged: true,
+  insertedId: ObjectId("6a883a41e84447b84c5b4493")
+} 
+
+the_database> db.todos.find({})
+[
+  {
+    "_id": "6a8816cbca45f68cbc202147",
+    "text": "Write code",
+    "done": true
+  },
+  {
+    "_id": "6a8816cbca45f68cbc202148",
+    "text": "Learn about containers",
+    "done": false
+  },
+  {
+    "_id": "6a883a41e84447b84c5b4493",
+    "text": "Increase the number of tools in my tool belt",
+    "done": false
+  }
+]
+
+the_database> exit
+oot@8f5e6fa96310:/# exit
+
+$ curl http://localhost:3000/todos
+[
+  { "_id": "6a8816cbca45f68cbc202147", "text": "Write code", "done": true>
+  { "_id": "6a8816cbca45f68cbc202148", "text": "Learn about containers", 
+ { "_id": "6a883a41e84447b84c5b4493", "text": "Increase the number of to>
+]
+
