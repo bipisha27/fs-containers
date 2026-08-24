@@ -3,8 +3,6 @@ services:
     image: hello-front-dev
     volumes:
       - ./todo-frontend:/usr/src/app
-    ports:
-      - 5173:5173
 
   backend:
     image: todo-backend-dev
